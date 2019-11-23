@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/mshimada2/TicTacToeBoard.svg?branch=master)](https://travis-ci.org/mshimada2/TicTacToeBoard)
-
-
-
 sudo: enabled
 
 language: cpp
