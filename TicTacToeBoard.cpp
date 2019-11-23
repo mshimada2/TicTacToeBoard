@@ -4,7 +4,7 @@
 /**
  * Class for representing a 3x3 Tic-Tac-Toe game board, using the Piece enum
  * to represent the spaces on the board.
-**/
+ **/
 
 //Constructor sets an empty board and specifies it is X's turn first
 TicTacToeBoard::TicTacToeBoard()
@@ -18,27 +18,25 @@ TicTacToeBoard::TicTacToeBoard()
 /**
  * Switches turn member variable to represent whether it's X's or O's turn
  * and returns whose turn it is
-**/
+ **/
 Piece TicTacToeBoard::toggleTurn()
 {
-  board[i][j] = turn;
 
 
+  if(turn == 'X')
+  {
 
-            if(turn == 'X')
-            {
+    turn = O;
 
-                turn = O;
-
-            }
+  }
 
 
-            else
-            {
+  else
+  {
 
-            turn = X;
+    turn = X;
 
-            }
+  }
 
 
   return turn;
@@ -52,61 +50,72 @@ Piece TicTacToeBoard::toggleTurn()
  * Out of bounds coordinates return the Piece Invalid value. When the game
  * is over, no more pieces can be placed so attempting to place a piece
  * should neither change the board nor change whose turn it is.
-**/ 
+ **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE){
-        return Invalid;
-    }
-    else if(board[row][column] == Blank ){
-        board[row][column] = turn;
-        toggleTurn();
-        return board[row][column];
-    }
-    else{
-        return board[row][column];
-    }
+  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE)
+  {
+    return Invalid;
+  }
+  else if(board[row][column] == Blank )
+  {
+    board[row][column] = turn;
+    toggleTurn();
+    return board[row][column];
+  }
+  else
+  {
+    return board[row][column];
+  }
 }
 
 /**
  * Returns what piece is at the provided coordinates, or Blank if there
  * are no pieces there, or Invalid if the coordinates are out of bounds
-**/
+ **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
 
-  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE){
-        return Invalid;
-    }
-    else if(board[row][column] == Blank ){
-        return Blank;
-    }
-    else{
-        return board[row][column];
-    }
-  
+  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE)
+  {
+    return Invalid;
+  }
+  else if(board[row][column] == Blank )
+  {
+    return Blank;
+  }
+  else
+  {
+    return board[row][column];
+  }
+
 }
 /**
  * Returns which Piece has won, if there is a winner, Invalid if the game
  * is not over, or Blank if the board is filled and no one has won.
-**/
+ **/
 Piece TicTacToeBoard::getWinner()
 {
-  for(int i = 0; i < BOARDSIZE; i++){
-        if(board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] != Blank){
-            return board[i][0];
-        }
-        if(board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] != Blank){
-            return board[0][i];
-        }
+  for(int i = 0; i < BOARDSIZE; i++)
+  {
+    if(board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] != Blank)
+    {
+      return board[i][0];
     }
-    //check diagonals
-    if(board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != Blank){
-        return board[0][0];
+    if(board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] != Blank)
+    {
+      return board[0][i];
     }
+  }
+  //check diagonals
+  if(board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != Blank)
+  {
+    return board[0][0];
+  }
 
-    if(board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][0] != Blank){
-        return board[0][2];
-    }
+  if(board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][0] != Blank)
+  {
+    return board[0][2];
+  }
 
 }
