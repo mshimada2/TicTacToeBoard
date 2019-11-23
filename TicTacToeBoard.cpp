@@ -1,4 +1,6 @@
 #include "TicTacToeBoard.h"
+//thankfully you gave me a lot of this code from 111 :)
+
 /**
  * Class for representing a 3x3 Tic-Tac-Toe game board, using the Piece enum
  * to represent the spaces on the board.
@@ -17,9 +19,29 @@ TicTacToeBoard::TicTacToeBoard()
  * Switches turn member variable to represent whether it's X's or O's turn
  * and returns whose turn it is
 **/
-Piece TicTacToeBoard::toggleTurn()
+Piece TicTacToeBoard::toggleTurn(turn)
 {
-  return Invalid;
+  board[i][j] = turn;
+
+
+
+            if(turn == 'X')
+            {
+
+                turn = O;
+
+            }
+
+
+            else
+            {
+
+            turn = X;
+
+            }
+
+
+  return turn;
 }
 
 /**
@@ -33,7 +55,17 @@ Piece TicTacToeBoard::toggleTurn()
 **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  return Invalid;
+  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE){
+        return Invalid;
+    }
+    else if(board[row][column] == Blank ){
+        board[row][column] = turn;
+        toggleTurn();
+        return board[row][column];
+    }
+    else{
+        return board[row][column];
+    }
 }
 
 /**
@@ -42,14 +74,39 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-  return Invalid;
-}
 
+  if(row < 0 || row >= BOARDSIZE || column < 0 || column >= BOARDSIZE){
+        return Invalid;
+    }
+    else if(board[row][column] == Blank ){
+        return Blank;
+    }
+    else{
+        return board[row][column];
+    }
+  
+}
 /**
  * Returns which Piece has won, if there is a winner, Invalid if the game
  * is not over, or Blank if the board is filled and no one has won.
 **/
 Piece TicTacToeBoard::getWinner()
 {
-  return Invalid;
+  for(int i = 0; i < BOARDSIZE; i++){
+        if(board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] != Blank){
+            return board[i][0];
+        }
+        if(board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] != Blank){
+            return board[0][i];
+        }
+    }
+    //check diagonals
+    if(board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != Blank){
+        return board[0][0];
+    }
+
+    if(board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][0] != Blank){
+        return board[0][2];
+    }
+
 }
