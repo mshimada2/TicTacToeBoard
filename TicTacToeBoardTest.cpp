@@ -34,7 +34,7 @@ TEST(TicTacToeBoardTest, oTurn)
 TEST( TicTacToeBoardTest, xTurn )
 {
     TicTacToeBoard boardTest;
-    testBoard.toggleTurn();
+    boardTest.toggleTurn();
     Piece turnX = boardTest.toggleTurn();
 
     ASSERT_EQ(turnX, X);
