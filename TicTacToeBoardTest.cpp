@@ -40,6 +40,21 @@ TEST( TicTacToeBoardTest, xTurn )
     ASSERT_EQ(turnX, X);
 }
 
+TEST( TicTacToeBoardTest, placeXPiece){
+    TicTacToeBoard boardTest;
+    Piece placeX = boardTest.placePiece(0,0); 
+    ASSERT_EQ(placeX, X);
+}
+
+TEST( TicTacToeBoardTest, placeOPiece){
+    TicTacToeBoard boardTest;
+    boardTest.placePiece(0,1);
+    Piece placeO = boardTest.placePiece(0,0);
+    ASSERT_EQ(placeO, O);
+}
+
+
+
 //The first (checkWinner) is just one of many combinations I can use
 //You basically have to come up with the all the different scenarios which is A LOT OF TESTS TO WRITE
 //is there any way to do it all at once?
@@ -102,4 +117,18 @@ TEST( TicTacToeBoardTest, placeTaken){
     Piece place = boardTest.placePiece(1,1); 
     ASSERT_EQ(place, X); 
 }
+
+TEST( TicTacToeBoardText, validatePiece){
+    TicTacToeBoard boardTest;
+    boardTest.placePiece(0,0); //X turn
+    Piece secondPiece = boardTest.getPiece(0,0);
+    ASSERT_EQ(secondPiece, X);
+}
+
+TEST( TicTacToeBoardText, pieceDontExistBro){
+    TicTacToeBoard boardTest;
+    Piece exists = boardTest.getPiece(0,0);
+    ASSERT_EQ(exists, Blank);
+}
+
 
